@@ -41,4 +41,19 @@ func TestSearch(t *testing.T) {
 		assertError(t, got, ErrNotFound)
 	})
 
+	t.Run("test add word to dictionary", func(t *testing.T) {
+		dict := Dictionary{}
+
+		word := "dog"
+		description := "peoples best friend"
+		dict.Add(word, description)
+
+		got, err := dict.Search("dog")
+
+		if err != nil {
+			t.Fatal("should find added word")
+		}
+
+		assertString(t, got, description)
+	})
 }
